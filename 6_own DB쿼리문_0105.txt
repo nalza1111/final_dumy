@@ -1,0 +1,600 @@
+--테이블 삭제 쿼리
+drop table band;
+drop table band_board_detail;
+drop table band_board_option;
+drop table band_calendar;
+drop table band_calendar_detail;
+drop table band_member_default;
+drop table band_member_detail;
+drop table band_vote;
+drop table band_vote_detail;
+drop table chall_mem_list;
+drop table chall_member;
+drop table chall_report;
+drop table chall_result;
+drop table chall_validation;
+drop table challenges;
+drop table exer_record;
+drop table exer_sub;
+drop table goal;
+drop table message;
+drop table multimedia;
+drop table own_users;
+drop table re_reply;
+drop table question;
+drop table reply;
+drop table report;
+drop table sns_account;
+drop table sns_board;
+drop table sns_follow;
+drop table sns_highlight;
+drop table sns_story;
+drop table chatroom;
+
+--테이블 조회
+select * from band;
+select * from band_board_detail;
+select * from band_board_option;
+select * from band_calendar;
+select * from band_calendar_detail;
+select * from band_member_default;
+select * from band_member_detail;
+select * from band_vote;
+select * from band_vote_detail;
+select * from chall_mem_list;
+select * from chall_member;
+select * from chall_report;
+select * from chall_result;
+select * from chall_validation;
+select * from challenges;
+select * from employees;
+select * from exer_record;
+select * from exer_sub;
+select * from goal;
+select * from message;
+select * from multimedia;
+select * from own_users;
+select * from question;
+select * from reply;
+select * from re_reply;
+select * from report;
+select * from sns_account;
+select * from sns_board;
+select * from sns_follow;
+select * from sns_highlight;
+select * from sns_story;
+
+--테이블 생성 쿼리
+
+CREATE TABLE BAND
+(
+	band_no              VARCHAR2(50) NOT NULL ,
+	band_leaderid        VARCHAR2(50) NOT NULL ,
+	band_name            VARCHAR2(50) NOT NULL ,
+	band_intro           VARCHAR2(500) NOT NULL ,
+	band_keyword         VARCHAR2(500) NULL ,
+	band_open_option     VARCHAR2(10) NOT NULL ,
+	band_loc_option      VARCHAR2(10) NOT NULL ,
+	band_age_beforoption DATE NULL ,
+	band_age_afteroption DATE NULL ,
+	band_category        VARCHAR2(300) NULL ,
+	band_gender_option   VARCHAR2(10) NOT NULL ,
+	band_membership_option VARCHAR2(10) NOT NULL ,
+	band_location        VARCHAR2(100) NULL 
+);
+
+CREATE TABLE BAND_BOARD_DETAIL
+(
+	band_board_content   VARCHAR2(3000) NOT NULL ,
+	band_board_cnt       VARCHAR2(50) NOT NULL ,
+	band_board_detail_no VARCHAR2(50) NOT NULL ,
+	band_remarks         VARCHAR2(50) NULL ,
+	band_board_date      DATE NOT NULL ,
+	band_board_update    DATE NULL ,
+	band_board_tag       VARCHAR2(500) NULL ,
+	band_board_option_no VARCHAR2(50) NOT NULL 
+);
+
+CREATE TABLE band_board_option
+(
+	band_board_order     VARCHAR2(10) NOT NULL ,
+	band_board_name      VARCHAR2(50) NOT NULL ,
+	band_board_auth      VARCHAR2(10) NOT NULL ,
+	band_like_option     VARCHAR2(10) NOT NULL ,
+	band_content_option  VARCHAR2(500) NULL ,
+	band_board_remarks   VARCHAR2(500) NULL ,
+	band_board_line      VARCHAR2(10) NOT NULL ,
+	band_board_option_no VARCHAR2(50) NOT NULL ,
+	band_no              VARCHAR2(50) NOT NULL 
+);
+
+CREATE TABLE band_calendar
+(
+	band_calendar_no     VARCHAR2(50) NOT NULL ,
+	band_board_detail_no VARCHAR2(50) NOT NULL ,
+	band_calendar_start  DATE NOT NULL ,
+	band_calendar_end    DATE NOT NULL ,
+	band_calendar_title  VARCHAR2(50) NOT NULL ,
+	band_calendar_mark   VARCHAR2(10) NOT NULL ,
+	band_calendar_location VARCHAR2(50) NULL 
+);
+
+CREATE TABLE band_calendar_detail
+(
+	band_calendar_no     VARCHAR2(50) NOT NULL ,
+	band_member_no       VARCHAR2(50) NOT NULL ,
+	band_attend          VARCHAR2(10) NULL 
+);
+
+CREATE TABLE BAND_MEMBER_DEFAULT
+(
+	user_id              VARCHAR2(50) NOT NULL ,
+	band_nickname        VARCHAR2(50) NOT NULL ,
+	band_gender          VARCHAR2(5) NOT NULL ,
+	band_location        VARCHAR2(30) NULL ,
+	band_interest        VARCHAR2(30) NULL ,
+	band_birth           DATE NOT NULL 
+);
+
+CREATE TABLE BAND_MEMBER_DETAIL
+(
+	user_id              VARCHAR2(50) NOT NULL ,
+	band_nickname        VARCHAR2(50) NOT NULL ,
+	band_no              VARCHAR2(50) NOT NULL ,
+	band_member_status   VARCHAR2(10) NOT NULL ,
+	band_kick_status     VARCHAR2(10) NULL ,
+	band_signup_date     DATE NOT NULL ,
+	band_access_date     DATE NULL ,
+	band_kick_date       DATE NULL ,
+	band_member_no       VARCHAR2(50) NOT NULL ,
+	band_birth           DATE NULL ,
+	band_gender          VARCHAR2(10) NOT NULL 
+);
+
+CREATE TABLE BAND_VOTE
+(
+	band_board_detail_no VARCHAR2(50) NOT NULL ,
+	band_vote_title      VARCHAR2(50) NOT NULL ,
+	vote_no1             VARCHAR2(50) NOT NULL ,
+	vote_no2             VARCHAR2(50) NOT NULL ,
+	vote_no3             VARCHAR2(50) NULL ,
+	vote_no4             VARCHAR2(50) NULL ,
+	vote_no5             VARCHAR2(50) NULL ,
+	multi_option         VARCHAR2(10) NULL ,
+	secret_option        VARCHAR2(10) NULL ,
+	deadline_option      DATE NOT NULL 
+);
+
+CREATE TABLE BAND_VOTE_DETAIL
+(
+	band_board_detail_no VARCHAR2(50) NOT NULL ,
+	band_member_no       VARCHAR2(50) NOT NULL ,
+	band_vote_no1        VARCHAR2(5) NULL ,
+	band_vote_no2        VARCHAR2(5) NULL ,
+	band_vote_no3        VARCHAR2(5) NULL ,
+	band_vote_no4        VARCHAR2(5) NULL ,
+	band_vote_no5        VARCHAR2(5) NULL 
+);
+
+CREATE TABLE chall_amount_list
+(
+	user_id              VARCHAR2(50) NOT NULL ,
+	amt_type             VARCHAR2(10) NOT NULL ,
+	chall_no             VARCHAR2(10) NOT NULL ,
+	amt_list_no          VARCHAR2(10) NOT NULL ,
+	price                NUMBER(10) NOT NULL ,
+	date                 DATE NULL 
+);
+
+CREATE TABLE chall_mem_list
+(
+	user_id              VARCHAR2(50) NOT NULL ,
+	mem_status           VARCHAR2(10) NOT NULL ,
+	chall_no             VARCHAR2(10) NOT NULL ,
+	mem_list_no          VARCHAR2(10) NOT NULL 
+);
+
+CREATE TABLE chall_member
+(
+	user_id              VARCHAR2(50) NOT NULL ,
+	mem_nickname         VARCHAR2(20) NOT NULL ,
+	mem_amt              NUMBER(10) NULL ,
+	mem_acc              NUMBER(20) NOT NULL ,
+	mem_bank             VARCHAR2(10) NOT NULL ,
+	mem_intro            VARCHAR2(300) NULL ,
+	mem_accname          VARCHAR2(20) NOT NULL 
+);
+
+CREATE TABLE chall_pay_refund
+(
+	pay_refund_no        VARCHAR2(10) NOT NULL ,
+	pay_code             VARCHAR2(10) NULL ,
+	date                 DATE NULL ,
+	type                 VARCHAR2(10) NOT NULL ,
+	refund_info          VARCHAR2(50) NULL ,
+	price                NUMBER(10) NOT NULL 
+);
+
+CREATE TABLE CHALL_REPORT
+(
+	report_no            VARCHAR2(50) NOT NULL ,
+	reporter             VARCHAR2(50) NULL ,
+	report_reason        VARCHAR2(500) NOT NULL ,
+	report_date          DATE NOT NULL ,
+	report_result        VARCHAR2(500) NULL ,
+	report_status        VARCHAR2(10) NOT NULL ,
+	vld_no               VARCHAR2(10) NOT NULL 
+);
+
+CREATE TABLE chall_result
+(
+	chall_vld            NUMBER(10) NOT NULL ,
+	chall_no             VARCHAR2(10) NOT NULL ,
+	refund_price         NUMBER(10) NULL ,
+	reward_price         NUMBER(10) NULL ,
+	user_id              VARCHAR2(50) NOT NULL ,
+	result_no            VARCHAR2(10) NOT NULL ,
+	mem_vld              NUMBER(10) NOT NULL ,
+	success_rate         NUMBER(10) NULL 
+);
+
+CREATE TABLE CHALL_VALIDATION
+(
+	vld_no               VARCHAR2(10) NOT NULL ,
+	vld_date             DATE NOT NULL ,
+	vld_status           VARCHAR2(10) NOT NULL ,
+	chall_no             VARCHAR2(10) NOT NULL ,
+	user_id              VARCHAR2(50) NULL 
+);
+
+CREATE TABLE CHALLENGES
+(
+	chall_no             VARCHAR2(10) NOT NULL ,
+	chall_category       VARCHAR2(10) NOT NULL ,
+	chall_tag            VARCHAR2(100) NULL ,
+	chall_title          VARCHAR2(20) NOT NULL ,
+	chall_duration       NUMBER(10) NOT NULL ,
+	chall_freq           NUMBER(10) NOT NULL ,
+	chall_startdate      DATE NOT NULL ,
+	now_mem              NUMBER(10) NULL ,
+	chall_intro          VARCHAR2(1000) NOT NULL ,
+	max_mem              NUMBER(10) NOT NULL ,
+	chall_price          NUMBER(10) NOT NULL ,
+	vld_method           VARCHAR2(300) NOT NULL ,
+	chall_pwd            VARCHAR2(50) NULL ,
+	chall_status         VARCHAR2(10) NOT NULL ,
+	chall_leader         VARCHAR2(10) NOT NULL ,
+	rest_price           NUMBER(10) NULL 
+);
+
+CREATE TABLE CHATROOM
+(
+	chatroom_no          VARCHAR2(50) NOT NULL ,
+	chatroom_name        VARCHAR2(50) NOT NULL ,
+	band_member_no       VARCHAR2(50) NOT NULL 
+);
+
+CREATE TABLE EXER_RECORD
+(
+	exerec_user_id       VARCHAR2(50) NOT NULL ,
+	exerec_date          DATE NOT NULL ,
+	exerec_weight        NUMBER NOT NULL ,
+	exerec_condition     VARCHAR2(50) NOT NULL ,
+	exerec_time          NUMBER NOT NULL ,
+	exerec_meter         NUMBER NULL ,
+	exerec_routin        VARCHAR2(500) NULL ,
+	exerec_feedback      VARCHAR2(500) NULL ,
+	exerec_no            VARCHAR2(50) NOT NULL ,
+	exersub_no           VARCHAR2(50) NULL ,
+	user_id              VARCHAR2(50) NULL 
+);
+
+CREATE TABLE EXER_SUB
+(
+	exersub_kind         VARCHAR2(50) NULL ,
+	kcal                 NUMBER NOT NULL ,
+	exersub_name         VARCHAR2(50) NULL ,
+	exersub_no           VARCHAR2(50) NOT NULL 
+);
+
+CREATE TABLE GOAL
+(
+	user_id              VARCHAR2(50) NOT NULL ,
+	weight               NUMBER NOT NULL ,
+	time                 NUMBER NULL ,
+	goal_date            DATE NULL 
+);
+
+CREATE TABLE LIKE
+(
+	category_no          VARCHAR2(50) NOT NULL ,
+	user_id              VARCHAR2(50) NOT NULL ,
+	category             VARCHAR2(50) NOT NULL ,
+	like_no              CHAR(18) NOT NULL 
+);
+
+CREATE TABLE MESSAGE
+(
+	message_no           VARCHAR2(50) NOT NULL ,
+	message_content      VARCHAR2(500) NOT NULL ,
+	message_time         TIMESTAMP NULL ,
+	chatroom_no          VARCHAR2(50) NOT NULL ,
+	band_member_no       VARCHAR2(50) NOT NULL 
+);
+
+CREATE TABLE MULTIMEDIA
+(
+	media_no             VARCHAR2(50) NOT NULL ,
+	media_real_file      VARCHAR2(50) NULL ,
+	media_server_file    VARCHAR2(50) NULL ,
+	media_file_path      VARCHAR2(50) NULL ,
+	identify_id          VARCHAR2(50) NULL ,
+	media_category       VARCHAR2(50) NULL ,
+	media_turn           CHAR(18) NOT NULL 
+);
+
+CREATE TABLE OWN_USERS
+(
+	user_id              VARCHAR2(50) NOT NULL ,
+	user_passwd          VARCHAR2(50) NOT NULL ,
+	user_name            VARCHAR2(10) NOT NULL ,
+	user_email           VARCHAR2(30) NOT NULL ,
+	user_phone           varchar2(20) NOT NULL ,
+	user_birthday        DATE NOT NULL ,
+	user_gender          VARCHAR2(10) NULL ,
+	user_perm            VARCHAR2(10) NULL ,
+	user_status          VARCHAR2(10) NULL ,
+	user_hobby5          VARCHAR2(500) NULL ,
+	sns_account_no       VARCHAR2(50) NULL 
+);
+
+CREATE TABLE QUESTION
+(
+	quest_no             VARCHAR2(50) NOT NULL ,
+	user_id              VARCHAR2(50) NOT NULL ,
+	title                VARCHAR2(50) NOT NULL ,
+	content              VARCHAR2(500) NOT NULL ,
+	answer               VARCHAR2(500) NULL ,
+	quest_date           DATE NULL ,
+	header               VARCHAR2(50) NOT NULL 
+);
+
+CREATE TABLE RE_REPLY
+(
+	re_reply_no          VARCHAR2(50) NOT NULL ,
+	re_reply_date        DATE NULL ,
+	re_reply_content     VARCHAR2(500) NULL ,
+	user_id              VARCHAR2(50) NULL ,
+	reply_no             VARCHAR2(50) NULL 
+);
+
+CREATE TABLE REPLY
+(
+	reply_no             VARCHAR2(50) NOT NULL ,
+	reply_content        VARCHAR2(500) NULL ,
+	reply_date           DATE NULL ,
+	user_id              VARCHAR2(50) NULL ,
+	reply_like           NUMBER NULL ,
+	category_no          VARCHAR2(50) NULL 
+);
+
+CREATE TABLE REPORT
+(
+	report_no            VARCHAR2(50) NOT NULL ,
+	reporter             VARCHAR2(50) NULL ,
+	dereporter           VARCHAR2(50) NULL ,
+	reason               VARCHAR2(50) NULL ,
+	content              VARCHAR2(500) NULL ,
+	report_date          DATE NULL ,
+	status               VARCHAR2(10) NULL 
+);
+
+CREATE TABLE SNS_ACCOUNT
+(
+	sns_nickname         VARCHAR2(50) NOT NULL ,
+	sns_profile          VARCHAR2(500) NULL ,
+	sns_board_no         NUMBER(5) NULL ,
+	sns_website          VARCHAR2(50) NULL ,
+	sns_account_no       VARCHAR2(50) NOT NULL 
+);
+
+CREATE TABLE sns_board
+(
+	sns_board_no         VARCHAR2(50) NOT NULL ,
+	sns_board_content    VARCHAR2(500) NOT NULL ,
+	sns_board_date       DATE NOT NULL ,
+	sns_nickname         VARCHAR2(10) NOT NULL ,
+	sns_account_no       VARCHAR2(50) NOT NULL 
+);
+
+CREATE TABLE SNS_FOLLOW
+(
+	sns_follow_id        VARCHAR2(50) NULL ,
+	sns_follower_id      VARCHAR2(50) NULL ,
+	sns_follow_no        VARCHAR2(50) NOT NULL 
+);
+
+CREATE TABLE SNS_HIGHLIGHT
+(
+	sns_highlight_no     VARCHAR2(50) NOT NULL ,
+	sns_story_no         VARCHAR2(50) NOT NULL 
+);
+
+CREATE TABLE SNS_STORY
+(
+	sns_story_no         VARCHAR2(50) NOT NULL ,
+	sns_nickname         VARCHAR2(50) NOT NULL ,
+	sns_story_date       DATE NOT NULL ,
+	sns_status           VARCHAR2(10) NOT NULL ,
+	sns_account_no       VARCHAR2(50) NOT NULL 
+);
+
+--운동종목(exer_sub)테이블 insert 쿼리
+INSERT INTO EXER_SUB 
+(EXERSUB_NO, EXERSUB_KIND, EXERSUB_NAME, KCAL)
+VALUES 
+('EX01', '가벼움', '걷기(느리게)', 2.4);
+
+INSERT INTO EXER_SUB 
+(EXERSUB_NO, EXERSUB_KIND, EXERSUB_NAME, KCAL)
+VALUES 
+('EX02', '격렬함', '계단오르기', 8.6);
+
+INSERT INTO EXER_SUB 
+(EXERSUB_NO, EXERSUB_KIND, EXERSUB_NAME, KCAL)
+VALUES 
+('EX03', '보통', '골프', 4.8);
+
+INSERT INTO EXER_SUB 
+(EXERSUB_NO, EXERSUB_KIND, EXERSUB_NAME, KCAL)
+VALUES 
+('EX04', '보통', '농구', 7.4);
+
+INSERT INTO EXER_SUB 
+(EXERSUB_NO, EXERSUB_KIND, EXERSUB_NAME, KCAL)
+VALUES 
+('EX05', '격렬함', '달리기', 9.8);
+
+INSERT INTO EXER_SUB 
+(EXERSUB_NO, EXERSUB_KIND, EXERSUB_NAME, KCAL)
+VALUES 
+('EX06', '보통', '댄스', 7.4);
+
+INSERT INTO EXER_SUB 
+(EXERSUB_NO, EXERSUB_KIND, EXERSUB_NAME, KCAL)
+VALUES 
+('EX07', '격렬함', '발레', 8.6);
+
+INSERT INTO EXER_SUB 
+(EXERSUB_NO, EXERSUB_KIND, EXERSUB_NAME, KCAL)
+VALUES 
+('EX08', '보통', '배구', 4.8);
+
+INSERT INTO EXER_SUB 
+(EXERSUB_NO, EXERSUB_KIND, EXERSUB_NAME, KCAL)
+VALUES 
+('EX09', '보통', '배드민턴', 6.2);
+
+INSERT INTO EXER_SUB 
+(EXERSUB_NO, EXERSUB_KIND, EXERSUB_NAME, KCAL)
+VALUES 
+('EX10', '보통', '서핑', 3.6);
+
+INSERT INTO EXER_SUB 
+(EXERSUB_NO, EXERSUB_KIND, EXERSUB_NAME, KCAL)
+VALUES 
+('EX11', '보통', '수영(느리게)', 4.8);
+
+INSERT INTO EXER_SUB 
+(EXERSUB_NO, EXERSUB_KIND, EXERSUB_NAME, KCAL)
+VALUES 
+('EX12', '격렬함', '수영(중간속도)', 8.6);
+
+INSERT INTO EXER_SUB 
+(EXERSUB_NO, EXERSUB_KIND, EXERSUB_NAME, KCAL)
+VALUES 
+('EX13', '격렬함', '스텝퍼', 9.8);
+
+INSERT INTO EXER_SUB 
+(EXERSUB_NO, EXERSUB_KIND, EXERSUB_NAME, KCAL)
+VALUES 
+('EX14', '격렬함', '스피닝', 9.8);
+
+INSERT INTO EXER_SUB 
+(EXERSUB_NO, EXERSUB_KIND, EXERSUB_NAME, KCAL)
+VALUES 
+('EX15', '격렬함', '실내자전거', 9.8);
+
+INSERT INTO EXER_SUB 
+(EXERSUB_NO, EXERSUB_KIND, EXERSUB_NAME, KCAL)
+VALUES 
+('EX16', '가벼움', '요가', 3.6);
+
+INSERT INTO EXER_SUB 
+(EXERSUB_NO, EXERSUB_KIND, EXERSUB_NAME, KCAL)
+VALUES 
+('EX17', '보통', '웨이트트레이닝', 7.4);
+
+INSERT INTO EXER_SUB 
+(EXERSUB_NO, EXERSUB_KIND, EXERSUB_NAME, KCAL)
+VALUES 
+('EX18', '격렬함', '유도', 8.6);
+
+INSERT INTO EXER_SUB 
+(EXERSUB_NO, EXERSUB_KIND, EXERSUB_NAME, KCAL)
+VALUES 
+('EX19', '보통', '자전거(느린 속도)', 7.4);
+
+INSERT INTO EXER_SUB 
+(EXERSUB_NO, EXERSUB_KIND, EXERSUB_NAME, KCAL)
+VALUES 
+('EX20', '격렬함', '자전거(사이클)', 9.8);
+
+INSERT INTO EXER_SUB 
+(EXERSUB_NO, EXERSUB_KIND, EXERSUB_NAME, KCAL)
+VALUES 
+('EX21', '격렬함', '줄넘기', 12.2);
+
+INSERT INTO EXER_SUB 
+(EXERSUB_NO, EXERSUB_KIND, EXERSUB_NAME, KCAL)
+VALUES 
+('EX22', '격렬함', '줌바', 8.6);
+
+INSERT INTO EXER_SUB 
+(EXERSUB_NO, EXERSUB_KIND, EXERSUB_NAME, KCAL)
+VALUES 
+('EX23', '보통', '체조', 7.4);
+
+INSERT INTO EXER_SUB 
+(EXERSUB_NO, EXERSUB_KIND, EXERSUB_NAME, KCAL)
+VALUES 
+('EX24', '격렬함', '축구', 9.8);
+
+INSERT INTO EXER_SUB 
+(EXERSUB_NO, EXERSUB_KIND, EXERSUB_NAME, KCAL)
+VALUES 
+('EX25', '격렬함', '크로스핏', 8.6);
+
+INSERT INTO EXER_SUB 
+(EXERSUB_NO, EXERSUB_KIND, EXERSUB_NAME, KCAL)
+VALUES 
+('EX26', '보통', '탁구', 4.8);
+
+INSERT INTO EXER_SUB 
+(EXERSUB_NO, EXERSUB_KIND, EXERSUB_NAME, KCAL)
+VALUES 
+('EX27', '격렬함', '태권도', 8.6);
+
+INSERT INTO EXER_SUB 
+(EXERSUB_NO, EXERSUB_KIND, EXERSUB_NAME, KCAL)
+VALUES 
+('EX28', '격렬함', '테니스', 9.8);
+
+INSERT INTO EXER_SUB 
+(EXERSUB_NO, EXERSUB_KIND, EXERSUB_NAME, KCAL)
+VALUES 
+('EX29', '보통', '폴댄스', 7.4);
+
+INSERT INTO EXER_SUB 
+(EXERSUB_NO, EXERSUB_KIND, EXERSUB_NAME, KCAL)
+VALUES 
+('EX30', '보통', '필라테스', 3.8);
+
+INSERT INTO EXER_SUB 
+(EXERSUB_NO, EXERSUB_KIND, EXERSUB_NAME, KCAL)
+VALUES 
+('EX31', '보통', '하이킹', 7.4);
+
+INSERT INTO EXER_SUB 
+(EXERSUB_NO, EXERSUB_KIND, EXERSUB_NAME, KCAL)
+VALUES 
+('EX32', '보통', '핫요가', 4.8);
+
+INSERT INTO EXER_SUB 
+(EXERSUB_NO, EXERSUB_KIND, EXERSUB_NAME, KCAL)
+VALUES 
+('EX33', '가벼움', '스트레칭', 3);
+
+--own_users테이블 insert쿼리
+insert into own_users (user_id, user_passwd, user_name, user_email, user_phone, user_birthday, user_gender, user_perm)
+values ('admin', 'admin', '관리자', 'admin@email', '01033332222', '1999-03-15', '남', '관리자');
