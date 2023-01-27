@@ -207,3 +207,8 @@ SELECT   BAND_NO
 SELECT ROWNUM RN, A.* FROM (
             SELECT * FROM BAND      
             ) A WHERE ROWNUM = 1;
+            select * from band_member_detail;
+insert into band_member_detail values('kmh', 'kmh1에 가입', 'BDU_1', 'BA02', 'BB01', sysdate, sysdate, null, 'BDM_62', '95/08/25', 'GD02');
+insert into band_member_detail values('admin', 'admin1에 가입', 'BDU_1', 'BA02', 'BB01', sysdate, sysdate, null, 'BDM_63', '1999/03/15', 'GD01');
+insert into band_member_detail values('nmj', 'nmj1에 가입', 'BDU_1', 'BA02', 'BB01', sysdate, sysdate, null, 'BDM_64', '95/10/25', 'GD02');--
+insert into band_member_detail values('hsj', 'hsj01에 가입', 'BDU_1', 'BA02', 'BB01', sysdate, sysdate, null, 'BDM_65', '92/03/19', 'GD02');
