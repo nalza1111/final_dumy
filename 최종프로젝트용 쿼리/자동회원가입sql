@@ -1,0 +1,42 @@
+create or replace trigger create_memberleader_detail
+       after insert on band
+    for each row
+declare
+    t_band_leader   band_member_default%rowtype;
+    memberNum       band_member_detail.user_id%type;
+begin
+    select  user_id, band_nickname, band_birth, band_gender
+        into t_band_leader.user_id, t_band_leader.band_nickname, t_band_leader.band_birth, t_band_leader.band_gender
+        from band_member_default
+            where user_id = :new.band_leaderid;
+    SELECT MAX(TO_NUMBER(SUBSTR(band_member_no,5)))+1
+        into memberNum FROM band_member_detail;
+    insert into band_member_detail
+               (
+                    user_id,
+                    band_nickname,
+                    band_no,
+                    band_member_status,
+                    band_kick_status,
+                    band_signup_date,
+                    band_access_date,
+                    band_kick_date,
+                    band_member_no,
+                    band_birth,
+                    band_gender
+               ) values (
+                    t_band_leader.user_id,
+                    t_band_leader.band_nickname,
+                    :new.band_no,
+                    'BA_02',
+                    'BB_01',
+                    current_date,
+                    current_date,
+                    null,
+                    'BDM_'||memberNum,
+                    t_band_leader.band_birth,
+                    t_band_leader.band_gender
+               );
+end;
+/
+alter trigger create_memberleader_detail enable;
